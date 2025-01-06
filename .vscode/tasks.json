@@ -1,0 +1,83 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "west build (rebuild)",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/bin/west",
+            "args": [
+                "build",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "west flash",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/bin/west",
+            "args": [
+                "flash",
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "west flash (remote)",
+            "type": "shell",
+            "command": "${workspaceFolder}/.venv/bin/west",
+            "args": [
+                "flash",
+                "-i",
+                "${input:ip}",
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "west debugserver",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "${env:PATH}:/opt/SEGGER/JLink",
+                },
+            },
+            "command": "${workspaceFolder}/.venv/bin/west",
+            "args": [
+                "debugserver",
+            ],
+        },
+        {
+            "label": "west debugserver (remote)",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "${env:PATH}:/opt/SEGGER/JLink",
+                },
+            },
+            "command": "${workspaceFolder}/.venv/bin/west",
+            "args": [
+                "debugserver",
+                "-i",
+                "${input:ip}",
+            ],
+        },
+    ],
+    "inputs": [
+        {
+            "id": "ip",
+            "type": "promptString",
+            "description": "Remote device IP",
+            "default": "10.231.9.232"
+        },
+    ]
+}
