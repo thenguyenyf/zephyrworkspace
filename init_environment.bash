@@ -29,7 +29,6 @@ west update
 west zephyr-export
 
 west completion bash >> ~/.bashrc
-echo '[ -d .venv ] && source ./.venv/bin/activate' >> ~/.bashrc
 echo 'if [ -n "$(find . -type f -name 'zephyr-env.sh')" ]; then source $(find . -type f -name 'zephyr-env.sh' -print -quit); fi' >> ~/.bashrc
 source ~/.bashrc
 

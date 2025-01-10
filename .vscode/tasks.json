@@ -21,7 +21,16 @@
             "command": "${workspaceFolder}/.venv/bin/west",
             "args": [
                 "flash",
+                "--erase"
             ],
+            "linux": {
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "${env:PATH}:/opt/SEGGER/JLink",
+                    },
+                },
+            },
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -35,7 +44,16 @@
                 "flash",
                 "-i",
                 "${input:ip}",
+                "--erase"
             ],
+            "linux": {
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "${env:PATH}:/opt/SEGGER/JLink",
+                    },
+                },
+            },
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -44,16 +62,21 @@
         {
             "label": "west debugserver",
             "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "PATH": "${env:PATH}:/opt/SEGGER/JLink",
+            "linux": {
+                "options": {
+                    "cwd": "${workspaceFolder}",
+                    "env": {
+                        "PATH": "${env:PATH}:/opt/SEGGER/JLink",
+                    },
                 },
             },
             "command": "${workspaceFolder}/.venv/bin/west",
             "args": [
                 "debugserver",
+                "--reset-after-load",
+                "--erase"
             ],
+            "isBackground": true
         },
         {
             "label": "west debugserver (remote)",
@@ -69,7 +92,10 @@
                 "debugserver",
                 "-i",
                 "${input:ip}",
+                "--reset-after-load",
+                "--erase",
             ],
+            "isBackground": true
         },
     ],
     "inputs": [
@@ -77,7 +103,6 @@
             "id": "ip",
             "type": "promptString",
             "description": "Remote device IP",
-            "default": "10.231.9.232"
         },
     ]
 }

@@ -12,10 +12,17 @@
             "type": "cortex-debug",
             "runToEntryPoint": "main",
             "armToolchainPath": "${userHome}/zephyr-sdk-0.17.0/arm-zephyr-eabi/bin",
-            "armToolchainPrefix": "arm-zephyr-eabi",
+            "toolchainPrefix": "arm-zephyr-eabi",
             "servertype": "external",
+            "serverpath": "/opt/SEGGER/JLink/JLinkGDBServerCLExe",
             "gdbTarget": "localhost:2331",
-            "preLaunchTask": "west debugserver (remote)"
+            "preLaunchTask": "west debugserver",
+            "postLaunchCommands": [
+                "monitor reset"
+            ],
+            "overrideRestartCommands": [
+                "monitor reset"
+            ],
         },
         {
             "name": "Zephyr Debug (remote)",
@@ -25,10 +32,17 @@
             "type": "cortex-debug",
             "runToEntryPoint": "main",
             "armToolchainPath": "${userHome}/zephyr-sdk-0.17.0/arm-zephyr-eabi/bin",
-            "armToolchainPrefix": "arm-zephyr-eabi",
+            "toolchainPrefix": "arm-zephyr-eabi",
             "servertype": "external",
+            "serverpath": "/opt/SEGGER/JLink/JLinkGDBServerCLExe",
             "gdbTarget": "localhost:2331",
-            "preLaunchTask": "west debugserver"
-        }
+            "preLaunchTask": "west debugserver (remote)",
+            "postLaunchCommands": [
+                "monitor reset"
+            ],
+            "overrideRestartCommands": [
+                "monitor reset"
+            ],
+        },
     ]
 }
